@@ -55,7 +55,7 @@ public class Homework2 {
      */
     public Optional<String> streamPipeline5() {
        
-        
+        return countries.stream().map(Country::getName).max((a,b) -> Integer.compare(a.split(" ").length,b.split(" ").length));
     }
 
     /**
