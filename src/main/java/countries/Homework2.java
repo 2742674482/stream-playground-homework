@@ -25,7 +25,7 @@ public class Homework2 {
      */
     public Optional<String> streamPipeline1() {
         
-        return countries.stream().flatMap(country -> country.getTranslations().values().stream()).max((a,b) -> Integer.compare(a.length(),b.length()));
+        return Optional.of(countries.stream().flatMap(country -> country.getTranslations().values().stream()).max(Comparator.comparing(String::length)).get());
     }
 
     /**
@@ -33,14 +33,14 @@ public class Homework2 {
      */
     public Optional<String> streamPipeline2() {
         
-        return countries.stream().flatMap(country -> country.getTranslations().entrySet().stream()).filter(entry -> entry.getKey().equals("it")).map(Map.Entry::getValue).max(Comparator.comparingInt(String::length));
+        return countries.stream().flatMap(country -> country.getTranslations().entrySet().stream()).filter(country -> country.getKey().equals("it")).map(Map.Entry::getValue).max(Comparator.comparing(String::length));
     }
 
     /**
      * Prints the longest country name translation together with its language code in the form language=translation.
      */
     public void streamPipeline3() {
-        countries.stream().flatMap(country -> country.getTranslations().entrySet().stream()).sorted((a,b) -> Integer.compare(b.getValue().length(),a.getValue().length())).limit(1).forEach(a -> System.out.println(a.getKey() + "=" + a.getValue()));
+        
     }
 
     /**
@@ -55,7 +55,7 @@ public class Homework2 {
      */
     public Optional<String> streamPipeline5() {
        
-        return countries.stream().map(Country::getName).max((a,b) -> Integer.compare(a.split(" ").length,b.split(" ").length));
+        return Optional.of(countries.stream().max(Comparator.comparing(country -> country.getName().split(" ").length)).map(Country::getName).get());
     }
 
     /**
