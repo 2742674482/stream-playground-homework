@@ -25,7 +25,7 @@ public class Homework2 {
      */
     public Optional<String> streamPipeline1() {
         
-        return Optional.of(countries.stream().flatMap(country -> country.getTranslations().values().stream()).max(Comparator.comparing(String::length)).get());
+        return countries.stream().flatMap(country -> country.getTranslations().values().stream()).max(Comparator.comparing(String::length)).get();
     }
 
     /**
