@@ -40,7 +40,7 @@ public class Homework2 {
      * Prints the longest country name translation together with its language code in the form language=translation.
      */
     public void streamPipeline3() {
-        
+        countries.stream().flatMap(country -> country.getTranslations().entrySet().stream()).max(Comparator.comparing(a -> a.getValue().length())).get();
     }
 
     /**
@@ -70,8 +70,8 @@ public class Homework2 {
      * Returns the country name with the most number of {@code 'e'} characters ignoring case.
      */
     public Optional<String> streamPipeline7() {
-        // TODO
-        return null;
+       //TODO
+       return null;
     }
 
     /**
